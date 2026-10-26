@@ -18,9 +18,9 @@ penguins |>
   )
 ```
 
-## Summary Table
+## Plot
 
-This is a summary table of the maximum bill length by species.
+This is a plot table of the maximum bill length by species.
 
 ```{r}
 library(tidyverse)
@@ -30,5 +30,13 @@ penguins |>
   group_by(species) |>
   summarize(
     max_bill_length = max(bill_length_mm, na.rm = TRUE)
-  )
+  ) |>
+  ggplot(aes(x = species, y = max_bill_length)) +
+  geom_col(fill = "tomato") +
+  labs(
+    title = "Maxi Bill Length by Penguin Species",
+    x = "Species",
+    y = "Maxi Bill Length (in mm)"
+  ) +
+  theme_minimal()
 ```
