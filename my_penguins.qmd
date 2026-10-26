@@ -14,7 +14,9 @@ library(palmerpenguins)
 penguins |>
   group_by(species) |>
   summarize(
-    max_bill_length = max(bill_length_mm, na.rm = TRUE)
+    mean_bill = mean(bill_length_mm, na.rm = TRUE),
+    median_bill = median(bill_length_mm, na.rm = TRUE),
+    max_bill = max(bill_length_mm, na.rm = TRUE)
   )
 ```
 
@@ -29,14 +31,16 @@ library(palmerpenguins)
 penguins |>
   group_by(species) |>
   summarize(
-    max_bill_length = max(bill_length_mm, na.rm = TRUE)
+    max_bill= max(bill_length_mm, na.rm = TRUE),
+    mean_bill = mean(bill_length_mm, na.rm = TRUE),
+    median_bill = median(bill_length_mm, na.rm = TRUE),
   ) |>
-  ggplot(aes(x = species, y = max_bill_length)) +
+  ggplot(aes(x = species, y = mean_bill)) +
   geom_col(fill = "tomato") +
   labs(
-    title = "Maxi Bill Length by Penguin Species",
+    title = "Mean Bill Length by Penguin Species",
     x = "Species",
-    y = "Maxi Bill Length (in mm)"
+    y = "Mean Bill Length (in mm)"
   ) +
   theme_minimal()
 ```
